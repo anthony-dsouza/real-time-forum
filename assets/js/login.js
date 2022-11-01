@@ -1,6 +1,5 @@
-
-let loginSocket = null;
-document.addEventListener("DOMContentLoaded", function () {
+let loginSocket = null; 
+document.addEventListener("DOMContentLoaded", function() {
     loginSocket = new WebSocket("ws://localhost:8080/loginWs/");
     console.log("JS attempt to connect");
     loginSocket.onopen = () => console.log("connected-login");
@@ -8,21 +7,22 @@ document.addEventListener("DOMContentLoaded", function () {
     loginSocket.onerror = (err) => console.log("Error!-login", err);
     loginSocket.onmessage = (msg) => {
         const resp = JSON.parse(msg.data);
-        console.log({ resp });
-        if (resp.label === "Greet") {
+        console.log({resp});
+        if (resp.label === "greet") {
             console.log(resp.content);
         } else if (resp.label === "login") {
-            console.log(resp.content);
+            console.log("uid: ",resp.cookie.uid, "sid: ", resp.cookie.sid, "age: ", resp.cookie.max_age);
+            document.cookie = `session=${resp.cookie.sid}; max-age=${resp.cookie.max_age}`;
         }
     }
 });
 
-const loginHandler = function (e) {
+const loginHandler = function(e) {
     e.preventDefault();
     const formFields = new FormData(e.target);
     const payloadObj = Object.fromEntries(formFields.entries());
     payloadObj["label"] = "login";
-    console.log({ payloadObj });
+    console.log({payloadObj});
     loginSocket.send(JSON.stringify(payloadObj));
 };
 

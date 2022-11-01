@@ -2,6 +2,7 @@ import RegisterForm from "./reg.js";
 import loginForm from "./login.js";
 import PostForm from "./post.js";
 
+import logoutBtn from "./logout.js";
 
 const formDiv = document.querySelector(".form-div");
 const loginBut = document.querySelector(".login-section");
@@ -33,8 +34,11 @@ closeBut.addEventListener("click", function () {
     formPage.style.height = "0%";
 });
 
+formDiv.append(logoutBtn);
+formDiv.append(loginForm);
+
 formDiv.append(closeButDiv)
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     formDiv.classList.add("show");
 });
 body.append(PostForm)

@@ -13,8 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log({ resp });
         if (resp.label === "Greet") {
             jsonFile = JSON.parse(resp.content)
+            if (jsonFile !==null){
             console.log("this is resp content", resp.content)
-            createPost(jsonFile)
+            createPost(jsonFile)}
         } else if (resp.label === "post") {
             jsonFile = JSON.parse(resp.content)
             createPost(jsonFile)

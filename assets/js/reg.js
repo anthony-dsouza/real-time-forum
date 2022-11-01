@@ -1,27 +1,28 @@
-let regSocket = null;
-document.addEventListener("DOMContentLoaded", function () {
+let regSocket = null; 
+document.addEventListener("DOMContentLoaded", function() {
     regSocket = new WebSocket("ws://localhost:8080/regWs/");
     console.log("JS attempt to connect");
     regSocket.onopen = () => console.log("connected-reg");
     regSocket.onclose = () => console.log("Bye-reg");
-    regSocket.onerror = (err) => console.log("Error!-reg", err);
+    regSocket.onerror = (err) => console.log("Error!-reg",err);
     regSocket.onmessage = (msg) => {
         const resp = JSON.parse(msg.data);
-        console.log({ resp });
+        console.log({resp});
         if (resp.label === "Greet") {
             console.log(resp.content);
         } else if (resp.label === "reg") {
-            console.log(resp.content);
+            console.log("uid: ",resp.cookie.uid, "sid: ", resp.cookie.sid, "age: ", resp.cookie.max_age);
+            document.cookie = `session=${resp.cookie.sid}; max-age=${resp.cookie.max_age}`;
         }
     }
 });
 
-const regHandler = function (e) {
+const regHandler = function(e) {
     e.preventDefault();
     const formFields = new FormData(e.target);
     const payloadObj = Object.fromEntries(formFields.entries());
     payloadObj["label"] = "reg";
-    console.log({ payloadObj });
+    console.log({payloadObj});
     regSocket.send(JSON.stringify(payloadObj));
 };
 
