@@ -19,12 +19,7 @@ func main() {
 	http.HandleFunc("/loginWs/", forum.LoginWsEndpoint)
 	http.HandleFunc("/regWs/", forum.RegWsEndpoint)
 	http.HandleFunc("/postWs/", forum.PostWsEndpoint)
-	// http.HandleFunc("/register", forum.RegisterHandler)
-	// http.HandleFunc("/logout", forum.LogoutHandler)
-	// http.HandleFunc("/postpage", forum.PostPageHandler)
-	// http.HandleFunc("/notifications", forum.NotiPageHandler)
-	// http.HandleFunc("/activity", forum.ActivityPageHandler)
-	// // http.HandleFunc("/delete", forum.DeleteHandler)
+
 	fmt.Println("Starting server at port 8080")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {

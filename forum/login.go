@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
 	"github.com/gorilla/websocket"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -31,13 +32,6 @@ func LoginWsEndpoint(w http.ResponseWriter, r *http.Request) {
 	firstResponse.Label = "Greet"
 	firstResponse.Content = "Please login to the Forum"
 	conn.WriteJSON(firstResponse)
-	// insert conn into db with empty userID, fill in the userID when registered or logged in
-	// stmt, err := db.Prepare(`INSERT INTO websockets (userID, websocketAdd) VALUES (?, ?);`)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// defer stmt.Close()
-	// stmt.Exec("", conn)
 	listenToLoginWs(conn)
 }
 
@@ -82,14 +76,8 @@ func ProcessAndReplyLogin(conn *websocket.Conn, loginPayload WsLoginPayload) {
 			rows.Scan(&userIDDB, &nicknameDB, &emailDB, &hashDB)
 		}
 
-		// // test hash
-		// hash, err := bcrypt.GenerateFromPassword([]byte(pw), 10)
-		// fmt.Printf("nicknameEmailDB: %s , hashDB: %s\n", nicknameEmailDB, hashDB)
-
 		// // compare pw
 		err = bcrypt.CompareHashAndPassword(hashDB, []byte(loginPayload.Password))
-		// fmt.Printf("DB pw: %s, entered: %s\n", hashDB, loginPayload.password)
-		// fmt.Printf("DB pw: %s, entered: %s\n", hashDB, hash)
 
 		// Login failed
 		if err != nil {
@@ -111,39 +99,6 @@ func ProcessAndReplyLogin(conn *websocket.Conn, loginPayload WsLoginPayload) {
 		successResponse.Pass = true
 		conn.WriteJSON(successResponse)
 
-		// // allow each user to have only one opened session
-		// var loggedInUname string
-		// rows, err = db.Query("SELECT username FROM sessions WHERE username = ?;", nicknameEmailDB)
-		// if err != nil {
-		// 	log.Fatal(err)
-		// }
-		// defer rows.Close()
-		// for rows.Next() {
-		// 	rows.Scan(&loggedInUname)
-		// }
-		// // if the uname can be found in session table, remove that row (should only have 1 row)
-		// if loggedInUname != "" {
-		// 	stmt, err := db.Prepare("DELETE FROM sessions WHERE username = ?;")
-		// 	if err != nil {
-		// 		log.Fatal(err)
-		// 	}
-		// 	defer stmt.Close()
-		// 	stmt.Exec(loggedInUname)
-		// }
-
-		// // assign a cookie
-		// sid := uuid.NewV4()
-		// fmt.Printf("login sid: %s\n", sid)
-		// http.SetCookie(w, &http.Cookie{
-		// 	Name:   "session",
-		// 	Value:  sid.String(),
-		// 	MaxAge: 900, // 15mins
-		// })
-
-		// // forumUser.Username = nicknameEmailDB
-		// // forumUser.LoggedIn = true
-		// // fmt.Printf("%s forum User Login\n", forumUser.Username)
-
 		// // update the user's login status
 		stmt, err := db.Prepare("UPDATE users SET loggedIn = ? WHERE userID = ?;")
 		if err != nil {
@@ -152,26 +107,6 @@ func ProcessAndReplyLogin(conn *websocket.Conn, loginPayload WsLoginPayload) {
 		defer stmt.Close()
 		stmt.Exec(true, userIDDB)
 
-		// // insert a record into session table
-		// stmt, err = db.Prepare("INSERT INTO sessions (sessionID, userID) VALUES (?, ?);")
-		// if err != nil {
-		// 	log.Fatal(err)
-		// }
-		// defer stmt.Close()
-		// stmt.Exec(sid.String(), nicknameEmailDB)
-
-		// test
-		// var whichUser string
-		// var logInOrNot bool
-		// rows, err = db.Query("SELECT username, loggedIn FROM users WHERE username = ?;", nicknameEmailDB)
-		// if err != nil {
-		// 	log.Fatal(err)
-		// }
-		// defer rows.Close()
-		// for rows.Next() {
-		// 	rows.Scan(&whichUser, &logInOrNot)
-		// }
-		// fmt.Printf("login user: %s, login status: %v\n", whichUser, logInOrNot)
 	}
 }
 
@@ -184,6 +119,6 @@ func testLogin() {
 	testpwHash, err := bcrypt.GenerateFromPassword([]byte(testpw), 10)
 	stmt.Exec(0o07, "doubleOhSeven", 42, 1, "James", "Bond", "secretagent@mi5.com", testpwHash, false)
 }
-func findCurUser(){
-	
+func findCurUser() {
+
 }

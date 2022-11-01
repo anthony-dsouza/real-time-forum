@@ -1,5 +1,5 @@
 let postSocket = null;
-let jsonFile
+let jsonFile //this is a new section////////////////////////////////
 const body = document.getElementsByTagName("BODY")[0]
 const comment = document.getElementsByClassName("comment")
 document.addEventListener("DOMContentLoaded", function () {
@@ -12,33 +12,34 @@ document.addEventListener("DOMContentLoaded", function () {
         const resp = JSON.parse(msg.data);
         console.log({ resp });
         if (resp.label === "Greet") {
-        jsonFile = JSON.parse(resp.content)
+            jsonFile = JSON.parse(resp.content)
             console.log("this is resp content", resp.content)
             createPost(jsonFile)
         } else if (resp.label === "post") {
-         jsonFile = JSON.parse(resp.content)
+            jsonFile = JSON.parse(resp.content)
             createPost(jsonFile)
         } else if (resp.label === "comment") {
-         jsonFile = JSON.parse(resp.content)
+            jsonFile = JSON.parse(resp.content)
             console.log("label is now comment----------------------")
             CreateComments(jsonFile)
         }
     }
 });
 function createPost(arr) {
-    document.querySelectorAll("#allPost").forEach(e => {
-        e.remove();
+    document.querySelectorAll("#curentPost").forEach(e => {
+        e.remove();//this is a new section////////////////////////////////
     });
-    const allPost = document.createElement("div")
-    allPost.id = "allPost"
+    const curentPost = document.createElement("div")
+    curentPost.id = "curentPost"
     for (let i = 0; i < arr.length; i++) {
         const postDiv = document.createElement("div")
+        postDiv.className = "PostContainer"//-----------------------------------------------------------------------------Godfrey
         const titleDiv = document.createElement("div");
-        const titleButton = document.createElement("button")
+        const titleButton = document.createElement("div")//-----------------------------------------------------------------------------Godfrey
         titleButton.setAttribute("value", i)
         titleButton.addEventListener("click", function (e) {
             showcommentHandler
-            console.log("lastjsonfile",jsonFile)
+            console.log("lastjsonfile", jsonFile)
             let valu = e.explicitOriginalTarget.value
             const comment = document.querySelector(".comment")
             comment.style.height = "%100"
@@ -55,28 +56,31 @@ function createPost(arr) {
             })
             let comForm = CreateCommentForm(valu)
             commentHandler
-            let comments= CreateComments(jsonFile)
-            comment.append(clone,comments,comForm, closeComments)
+            let comments = CreateComments(jsonFile)
+            comment.append(clone, comments, comForm, closeComments)
             comment.style.height = "100%";
         })
         titleButton.innerText = (arr[i].postinfo.title)
-        titleButton.style.padding = "0"
-        titleButton.style.border = "none"
-        titleButton.style.background = "none"
+        // titleButton.style.padding = "0"
+        // titleButton.style.border = "none"
+        // titleButton.style.background = "none"
         const contentDiv = document.createElement("div");
         const categoryDiv = document.createElement("div");
         const userIdDiv = document.createElement("div");
         postDiv.id = `post-${i}`;
-        titleDiv.id = `title-${i}`;
-        contentDiv.id = `content-${i}`;
-        categoryDiv.id = `category-${i}`;
+        titleDiv.id = `curentPostTitle-${i}`;
+        titleDiv.className = "curentPostTitle"//-----------------------------------------------------------------------------Godfrey
+        contentDiv.id = `PostContent-${i}`;
+        contentDiv.className = "PostContent"//-----------------------------------------------------------------------------Godfrey
+        categoryDiv.id = `PostCategory-${i}`;
+        categoryDiv.className = "PostCategory"//-----------------------------------------------------------------------------Godfrey
         userIdDiv.id = `id-${i}`;
         // const titleText = document.createElement("p")
         // titleText.style.fontWeight= "900"
         const contentText = document.createElement("p")
         const categoryText = document.createElement("p")
-        categoryText.style.backgroundColor = "grey"
-        categoryText.style.width = "10%"
+        // categoryText.style.backgroundColor = "grey"
+        // categoryText.style.width = "10%"
         const userIdText = document.createElement("p")
         // const titletextNode = document.createTextNode(arr[i].postinfo.title) 
         // titleText.appendChild(titletextNode)
@@ -92,9 +96,9 @@ function createPost(arr) {
         categoryDiv.append(categoryText)
         userIdDiv.append(userIdText)
         postDiv.append(titleDiv, contentDiv, categoryDiv, userIdDiv)
-        allPost.append(postDiv)
+        curentPost.append(postDiv)
     }
-    body.appendChild(allPost)
+    body.appendChild(curentPost)
 }
 const PostHandler = function (e) {
     e.preventDefault();
@@ -108,19 +112,18 @@ const PostHandler = function (e) {
 const PostForm = document.createElement("form");
 PostForm.addEventListener("submit", PostHandler);
 
-// login form
-// name label
+// Creating New post
 const titleLabelDiv = document.createElement('div');
 const titleLabel = document.createElement('label');
-titleLabel.textContent = "title";
-titleLabel.setAttribute("for", "title");
+titleLabel.textContent = "Subject Title";
+titleLabel.setAttribute("for", "SubjectTitle");
 titleLabelDiv.append(titleLabel);
 // name input
 const titleInputDiv = document.createElement('div');
 const titleInput = document.createElement('input');
 titleInput.setAttribute("type", "text");
 titleInput.setAttribute("name", "title");
-titleInput.setAttribute("id", "title");
+titleInput.setAttribute("id", "title Field");
 titleInputDiv.append(titleInput);
 //-------------------
 const CatDiv = document.createElement('div');
@@ -188,7 +191,7 @@ const PostSubmit = document.createElement("button");
 PostSubmit.textContent = "Post";
 PostSubmit.setAttribute("type", "submit");
 PostSubmitDiv.append(PostSubmit);
-
+//need to creat a classList and function for all the titleInputDiv
 PostForm.append(titleLabelDiv, titleInputDiv, CatDiv, CatOptionDiv, contLabelDiv, contInputDiv, PostSubmitDiv);
 
 function CreateCommentForm(value) {

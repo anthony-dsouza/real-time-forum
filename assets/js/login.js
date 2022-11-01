@@ -1,6 +1,6 @@
 
-let loginSocket = null; 
-document.addEventListener("DOMContentLoaded", function() {
+let loginSocket = null;
+document.addEventListener("DOMContentLoaded", function () {
     loginSocket = new WebSocket("ws://localhost:8080/loginWs/");
     console.log("JS attempt to connect");
     loginSocket.onopen = () => console.log("connected-login");
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     loginSocket.onerror = (err) => console.log("Error!-login", err);
     loginSocket.onmessage = (msg) => {
         const resp = JSON.parse(msg.data);
-        console.log({resp});
+        console.log({ resp });
         if (resp.label === "Greet") {
             console.log(resp.content);
         } else if (resp.label === "login") {
@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-const loginHandler = function(e) {
+const loginHandler = function (e) {
     e.preventDefault();
     const formFields = new FormData(e.target);
     const payloadObj = Object.fromEntries(formFields.entries());
     payloadObj["label"] = "login";
-    console.log({payloadObj});
+    console.log({ payloadObj });
     loginSocket.send(JSON.stringify(payloadObj));
 };
 
@@ -37,12 +37,13 @@ const nameLabel = document.createElement('label');
 nameLabel.textContent = "Please Enter Your Nickname or Email:";
 nameLabel.setAttribute("for", "name");
 nameLabelDiv.append(nameLabel);
+
 // name input
 const nameInputDiv = document.createElement('div');
 const nameInput = document.createElement('input');
 nameInput.setAttribute("type", "text");
 nameInput.setAttribute("name", "name");
-nameInput.setAttribute("id", "name");
+nameInput.setAttribute("id", "login_name");
 nameInput.setAttribute("placeholder", "eg: Nick or abc@def.com")
 nameInputDiv.append(nameInput);
 
@@ -52,17 +53,18 @@ const pwLabel = document.createElement('label');
 pwLabel.textContent = "Please Enter Your Password:";
 pwLabel.setAttribute("for", "pw");
 pwLabelDiv.append(pwLabel);
+
 // password input
 const pwInputDiv = document.createElement('div');
 const pwInput = document.createElement('input');
 pwInput.setAttribute("type", "password");
 pwInput.setAttribute("name", "pw");
-pwInput.setAttribute("id", "pw");
+pwInput.setAttribute("id", "login_password");
 pwInputDiv.append(pwInput);
 
 const loginSubmitDiv = document.createElement('div');
 const loginSubmit = document.createElement("button");
-loginSubmit.textContent = "Login";
+loginSubmit.textContent = "-Login-";
 loginSubmit.setAttribute("type", "submit");
 loginSubmitDiv.append(loginSubmit);
 
