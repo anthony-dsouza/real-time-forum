@@ -111,11 +111,26 @@
                         <input class="NickName" type="text" name="NickName"
                             placeholder="Please Insert Your NickName Here" />
                         <input type="number" name="Phone number" placeholder="Please Insert Your Phone Number Here" />
-                        <input type="date" name="Date Of Birth" placeholder="Please Insert Your Date Of Birth Here" />
+                        <legend>Select Your D.O.B:</legend><input type="date" name="value" />
+                        <!-- <input type="" name="Date Of Birth" placeholder="Please Insert Your Date Of Birth Here" /> -->
                         <input type="email" name="Email" placeholder="Email" />
                         <input type="password" name="password" placeholder="Please Insert Your Password Here" />
                         <input type="password" name="password" placeholder="Please conferm Your Password" />
-                        <input type="select" name="Gender" placeholder="Gender" />
+                        <!-- <input type="radio" name="gender_option"/> -->
+                        <ol>
+                            <h2>Please Select Your Gender</h2>
+                            <label for="male">Male</label><input type="radio" id="Male" name="fav_language"
+                                value="male"><br>
+
+                            <label for="Female">Female</label><input type="radio" id="Female" name="fav_language"
+                                value="Female"><br>
+
+                            <label for="Other">Other</label><input type="radio" id="Other" name="fav_language"
+                                value="Other"><br>
+
+                            <label for="PrefareNotToSay">Prefare Not</label><input type="radio" id="PrefareNotToSay"
+                                name="fav_language" value="PrefareNotToSay">
+                        </ol><br>
                     </div>
                     <button type="submit" href="/">Submit Registration</button>
                 </form>
