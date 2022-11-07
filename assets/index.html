@@ -7,17 +7,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="../assets/css/styles.css">
     <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
 </head>
 
 <body>
+    <!---header--->
+    <header>
+
+
+
+        <ul class="navbar">
+            <li><a href="#" class="logo"><img src="img/logo.png"></a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">My Portfolio</a></li>
+            <!-- <li>
+                <div class="bx bx-menu" id="menu-icon"></div>
+            </li> -->
+            <li>
+                <p><a button class="button" data-userPopUpP="userPopUpP">Contact Us</button></a></p>
+            </li>
+            <li>
+                <p><a button class="button" data-userPopUpP="userPopUpPOne">Sign In</button></a></p>
+            </li>
+            <li>
+                <p><a button class="button" data-userPopUpP="userPopUpPTwo">Register</button></a></p>
+            </li>
+        </ul>
+    </header>
+
+    <!---home--->
     <div class="form-page">
         <div class="form-div">
             <div class="login-section">Login</div>
             <div class="reg-section">Register</div>
         </div>
     </div>
+    <!-- popup page -->
+    <div id="userPopUpP" class="userPopUpP">
+        <div class="userPopUpP-content">
+            <div class="administrationForm">
+                <!---- this is to close the form-->
+                <a class="close">&times;</a>
+                <form action="/">
+                    <h2>Contact Us</h2>
+                    <div>
+                        <input class="FirstName" type="text" name="First Name"
+                            placeholder="Please Insert Your First Name Here" />
+                        <input class="Lastname" type="text" name="Last name"
+                            placeholder="Please Insert Your Last Name Here" />
+                        <input type="email" name="Email" placeholder="Email" />
+                        <input type="number" name="Phone number" placeholder="Please Insert Your Phone Number Here" />
+                        <input type="text" name="textarea" placeholder="Please provide subject refrenc" />
+                    </div>
+                    <span>Message</span>
+                    <div>
+                        <textarea rows="4"></textarea>
+                    </div>
+                    <button type="submit" href="/">Submit Query</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="userPopUpPOne" class="userPopUpP">
+        <div class="userPopUpP-content">
+            <div class="administrationForm">
+                <!---- this is to close the form-->
+                <a class="close">&times;</a>
+                <form action="/">
+                    <h2>Sign In</h2>
+                    <div>
+                        <input class="NickName" type="text" name="NickName"
+                            placeholder="Please Insert Your NickName Here" />
+                        <input type="email" name="Email" placeholder="Email" />
+                        <input type="password" name="password" placeholder="Please Insert Your Password Here" />
+                    </div>
+                    <button type="submit" href="/">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="userPopUpPTwo" class="userPopUpP">
+        <div class="userPopUpP-content">
+            <div class="administrationForm">
+                <!---- this is to close the form-->
+                <span class="close">&times;</span>
+                <form action="/">
+                    <h2>Registeration Form</h2>
+                    <div>
+                        <input class="FirstName" type="text" name="First Name"
+                            placeholder="Please Insert Your First Name Here" />
+                        <input class="LastName" type="text" name="Last Name"
+                            placeholder="Please Insert Your Last Name Here" />
+                        <input class="NickName" type="text" name="NickName"
+                            placeholder="Please Insert Your NickName Here" />
+                        <input type="number" name="Phone number" placeholder="Please Insert Your Phone Number Here" />
+                        <input type="date" name="Date Of Birth" placeholder="Please Insert Your Date Of Birth Here" />
+                        <input type="email" name="Email" placeholder="Email" />
+                        <input type="password" name="password" placeholder="Please Insert Your Password Here" />
+                        <input type="password" name="password" placeholder="Please conferm Your Password" />
+                    </div>
+                    <button type="submit" href="/">Submit Registration</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end popup page -->
     <div class="comment"></div>
     <script type="module" src="../assets/js/index.js"></script>
+    <script src="../assets/js/popupforms.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,16 @@
 /*------------------------------------------------------------ MAIN PAGE PAGE --------------------------------------*/
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     /*THIS CSS SECTION IS FOR THE BODY OF THE MAIN PAGE*/
     align-items: center;
     flex-direction: column;
-    padding: 10px;
+    /* padding: 10px; */
     margin: 0px;
     height: 100%;
     /* overflow: hidden; */
@@ -20,6 +26,117 @@ body {
     /* for standard syntax */
     background: linear-gradient(to bottom right, rgba(190, 186, 182, 0.5), rgb(199, 150, 91))
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+/* -------------------------popupbox-------------------------------------- */
+ .userPopUpP {
+        display: none;
+        position: fixed;
+        z-index: 8;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .userPopUpP-content {
+        margin: 50px auto;
+        border: 1px solid #999;
+        width: 60%;
+      }
+      h2,
+      p {
+        margin: 0 0 20px;
+        font-weight: 400;
+        color: #999;
+      }
+      span {
+        color: #666;
+        display: block;
+        padding: 0 0 5px;
+      }
+      form {
+        padding: 25px;
+        margin: 25px;
+        box-shadow: 0 2px 5px #f5f5f5;
+        background: #eee;
+      }
+      input,
+      textarea {
+        width: 90%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #1c87c9;
+        outline: none;
+      }
+      .administrationForm button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background: #1c87c9;
+        font-size: 16px;
+        font-weight: 400;
+        color: #fff;
+      }
+      button:hover {
+        background: #2371a0;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      button.button {
+        background: none;
+        border-top: none;
+        outline: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: #02274a 1px solid;
+        padding: 0 0 3px 0;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button.button:hover {
+        border-bottom: #a99567 1px solid;
+        color: #a99567;
+      }
+
+
+
+
 
 /* .comment {   THIS FILD IS NOT READY FOR USE YET
     height: 0%;
@@ -72,7 +189,7 @@ body {
 }
 
 .PostContent>p {
-    
+
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -116,7 +233,7 @@ body {
 
 .form-page {
     /*THIS CSS SECTION IS FOR THE REVELING DROP DOWN CURTAIN OF MEMBERSHIP AND REGISTRATION PAGE*/
-    height: 0%;
+    height: 50%;
     width: 100%;
     position: fixed;
     z-index: 1;
@@ -124,7 +241,7 @@ body {
     left: 0;
     background-color: rgb(142, 77, 17);
     overflow-y: hidden;
-    transition: 0.5s;
+    /* transition: 0.5s; */
 }
 
 .login-section {
@@ -142,3 +259,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.form-page{
+    display:none;
+} 
