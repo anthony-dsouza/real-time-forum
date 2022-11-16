@@ -4,14 +4,16 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'poppins', sans-serif;
 }
 
 body {
     /*THIS CSS SECTION IS FOR THE BODY OF THE MAIN PAGE*/
-    align-items: center;
-    flex-direction: column;
+    /* margin: 20px; */
+    /* align-items: center; */
+    /* flex-direction: column; */
     /* padding: 10px; */
-    margin: 0px;
+    /* margin: 0px; */
     height: 100%;
     /* overflow: hidden; */
     background-color: rgb(250, 234, 214);
@@ -25,9 +27,12 @@ body {
     background: -o-linear-gradient(to bottom right, rgba(190, 186, 182, 0.5), rgb(199, 150, 91));
     /* for standard syntax */
     background: linear-gradient(to bottom right, rgba(190, 186, 182, 0.5), rgb(199, 150, 91))
+    
 }
 
-ul {
+
+.nav-bar {
+    /* padding: 20px; */
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -35,34 +40,41 @@ ul {
     background-color: #333;
 }
 
+
 li {
     float: left;
+    padding-right: 10%;
 }
 
 li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 28px 14px 10px 24px;
     text-decoration: none;
 }
 
 li a:hover:not(.active) {
-    background-color: #111;
+    color: crimson;
+    border-radius: 20%;
+    transition: 0.7s;
+    /* transition-property: inherit; */
+    /* margin-top: 30%; */
+    background-color: #fff;
 }
 
-
-/* .comment {   THIS FILD IS NOT READY FOR USE YET
+/* THIS FILD IS NOT READY FOR USE YET */
+.comment {   
     height: 0%;
     width: 100%;
-    position: fixed;
+    /* position: fixed; */
     z-index: 1;
     top: 0;
     left: 0;
     background-color: rgb(140, 9, 24);
     overflow-y: hidden;
     transition: 0.5s;
-} */
+}
 
 #membershipButton {
     /*THIS CSS SECTION IS FOR THE BUTTON TO THE MEMBERSHIP AND REGISTRATION PAGE*/
@@ -103,9 +115,37 @@ li a:hover:not(.active) {
 }
 
 .PostContent>p {
-
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.postPage{
+    padding-left: 2%;
+    padding-right: 2%;
+    max-width: 50%;
+}
+
+#allPost{
+    padding-left: 2%;
+    padding-right: 2%;
+    max-width: 50%;
+}
+
+#category {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#category > div {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+#category > div > input {
+    margin: 10px;
+}
+#category > div > label {
+    margin: 10px;
 }
 
 .PostCategory {
@@ -145,6 +185,7 @@ li a:hover:not(.active) {
     margin: 50px auto;
     border: 1px solid #999;
     width: 60%;
+    border: #a99567;
 }
 
 h2,
@@ -160,7 +201,7 @@ span {
     padding: 0 0 5px;
 }
 
-.administrationForm {
+.formPage {
     padding: 25px;
     margin: 25px;
     box-shadow: 0 2px 5px #f5f5f5;
@@ -173,6 +214,7 @@ textarea {
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #1c87c9;
+    border-radius: 0.5rem;
     outline: none;
 }
 
@@ -223,5 +265,13 @@ button.button:hover {
 
 
 .form-page {
-    display: none;
+   color: red;
+}
+
+
+/* --------------- */
+
+.user-list {
+    display: block;
+    height: 30px;
 }
